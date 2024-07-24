@@ -8,12 +8,16 @@
         saas
         {% endblock head_title%}
     </title>
+    {% include "base/css.html" %}    
 </head>
 <body>
+    {% include "nav/navbar.html" %}
+
     <h1>hello bhai</h1>
     {% block content %}
-<p>hi</p>
+    <p>hi</p>
     {% endblock content %}
     
+{% include "base/js.html" %}
 </body>
 </html>
