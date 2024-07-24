@@ -1,5 +1,5 @@
 # ignore vendor files
-src\staticfiles\vendors
+src/staticfiles/vendors
 
 # ignore local satic file files
 # or "local cdn"
