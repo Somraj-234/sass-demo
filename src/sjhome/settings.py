@@ -54,10 +54,10 @@ SECRET_KEY = config("DJANGO_SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = str(os.environ.get("DJANGO_DEBUG")).lower() == "true"
 DEBUG = config("DJANGO_DEBUG", cast=bool)
-
+BASE_URL = config("BASE_URL", default=None)
 # print("DEBUG", DEBUG, type(DEBUG))
 
-ALLOWED_HOSTS = [
+ALLOWED_HOSTS = [ 
     "sass-demo-production.up.railway.app",
     ".railway.app" # https://saas.prod.railway.app
 ]
