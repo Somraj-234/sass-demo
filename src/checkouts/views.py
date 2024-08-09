@@ -1,5 +1,6 @@
 import helper.billing
 from django.urls import reverse
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
@@ -41,7 +42,6 @@ def checkout_redirect_view(request):
     )
     return redirect(url)
 
-
 def checkout_finalize_view(request):
     # session response
     session_id = request.GET.get('session_id')
@@ -59,7 +59,6 @@ def checkout_finalize_view(request):
     except:
         sub_obj = None
     
-
     try:
         user_obj = User.objects.get(customer__stripe_id=customer_id)
     except:
@@ -97,7 +96,8 @@ def checkout_finalize_view(request):
         for k,v in updated_sub_options.items():
             setattr(_user_sub_obj, k, v)
         _user_sub_obj.save()
-    
+        messages.success(request, "Success! Thank you for joining.")
+        return redirect(_user_sub_obj.get_absolute_url())
     
     context = {}
     return render(request, "checkout/success.html", context)
