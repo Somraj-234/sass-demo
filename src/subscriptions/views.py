@@ -3,6 +3,8 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from subscriptions import utils as subs_utils
+
 
 from subscriptions.models import SubscriptionPrice, UserSubscription
 
@@ -11,12 +13,11 @@ def user_subscription_view(request,):
     user_sub_obj, created = UserSubscription.objects.get_or_create(user=request.user)
     if request.method == "POST":
         print("refresh sub")
-        if user_sub_obj.stripe_id:
-            sub_data = helper.billing.get_subscription(user_sub_obj.stripe_id, raw=False)
-            for k, v in  sub_data.items():
-                setattr(user_sub_obj,k,v)
-            user_sub_obj.save()
+        finished = subs_utils.refresh_active_users_subscriptions(user_ids=[request.user.id], active_only=False)
+        if finished:
             messages.success(request, "Your plan details has been refreshed")
+        else:
+            messages.error(request, "Your plan details has not been refreshed, please try again.")
         return redirect(user_sub_obj.get_absolute_url())
     return render(request,'subscriptions/user_detail_view.html', {'subscription':user_sub_obj})
 
