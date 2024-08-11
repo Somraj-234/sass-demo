@@ -50,6 +50,10 @@ jobs:
         run: |
           python -m pip install pip --upgrade
           python -m pip install -r requirements.txt
+      - name: Django Migrate Databse
+        working-directory: ./src
+        run: |
+          python manage.py migrate
       - name: Django Tests
         working-directory: ./src
         run: |
