@@ -72,3 +72,4 @@ def subscription_price_view(request, interval="month"):
 
 
 
+

@@ -1,2 +1,23 @@
 {% load static %}
-<link href="{% static 'vendors/flowbite.min.css' %}"  rel="stylesheet" />
+<link href="{% static 'vendors/saas-theme.min.css' %}" rel="stylesheet" />
+
+<!-- Custom CSS Overrides -->
+<style>
+  a[href="{% url 'account_login' %}"], a[href="/accounts/signup/"]"{
+      background-color: transparent !important;
+      color: blue !important;
+      border: none !important;
+      padding: 0 !important;
+  }
+
+  a[href="{% url 'home' %}"] {
+    background-color: transparent !important;
+    color: gray !important;
+    border: none !important;
+    padding: 0 !important;
+  }
+
+  a[href="{% url 'home' %}"]:hover {
+    color: blue !important;
+  }
+</style>

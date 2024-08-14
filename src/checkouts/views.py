@@ -52,7 +52,7 @@ def checkout_finalize_view(request):
     subscription_data = {**checkout_data}
 
     price_qs = SubscriptionPrice.objects.filter(stripe_id=plan_id)
-    print(price_qs)
+    # print(price_qs)
     # django's related look ups
     try:
         sub_obj = Subscription.objects.get(subscriptionprice__stripe_id=plan_id)
