@@ -59,8 +59,9 @@ BASE_URL = config("BASE_URL", default=None)
 
 CSRF_TRUSTED_ORIGINS = [
     "https://sass-demo-production.up.railway.app",
-    ".railway.app"
+    "https://*.railway.app"
 ]
+
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
