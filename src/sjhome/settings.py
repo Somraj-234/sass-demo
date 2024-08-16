@@ -89,6 +89,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.github',
+    'allauth.socialaccount.providers.google',
     "widget_tweaks",
     "slippers",
 ]
@@ -171,9 +172,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # all auth config
 LOGIN_REDIRECT_URL = "/"
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
-ACCOUNT_EMAIL_VERIFICATION="mandatory"
+# ACCOUNT_EMAIL_VERIFICATION="mandatory"
+ACCOUNT_EMAIL_VERIFICATION = 'optional'
 ACCOUNT_EMAIL_REQUIRED=True
 ACCOUNT_EMAIL_SUBJECT_PREFIX="[SJ]"
+
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
@@ -190,6 +193,17 @@ SOCIALACCOUNT_PROVIDERS = {
         'SCOPE': ['user'],
         'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
         'VERIFIED_EMAIL': True,
+    },
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        },
+        'OAUTH_PKCE_ENABLED': True,
+        # 'EMAIL_AUTHENTICATION': True,
     }
 }
 
