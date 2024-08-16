@@ -57,6 +57,17 @@ DEBUG = config("DJANGO_DEBUG", cast=bool)
 BASE_URL = config("BASE_URL", default=None)
 # print("DEBUG", DEBUG, type(DEBUG))
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://sass-demo-production.up.railway.app",
+    ".railway.app"
+]
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
+
 ALLOWED_HOSTS = [ 
     "sass-demo-production.up.railway.app",
     ".railway.app" # https://saas.prod.railway.app
