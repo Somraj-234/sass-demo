@@ -12,9 +12,9 @@ if "sk_test" in STRIPE_SECRET_KEY and not DJANGO_DEBUG and not STRIPE_TEST_OVERR
 
 stripe.api_key = STRIPE_SECRET_KEY
 
-print(f"DJANGO_DEBUG={DJANGO_DEBUG}")
-print(f"STRIPE_SECRET_KEY={STRIPE_SECRET_KEY}")
-print(f"STRIPE_TEST_OVERRIDE={STRIPE_TEST_OVERRIDE}")
+# print(f"DJANGO_DEBUG={DJANGO_DEBUG}")
+# print(f"STRIPE_SECRET_KEY={STRIPE_SECRET_KEY}")
+# print(f"STRIPE_TEST_OVERRIDE={STRIPE_TEST_OVERRIDE}")
 
 
 def serialize_subscription_data(subscription_response):

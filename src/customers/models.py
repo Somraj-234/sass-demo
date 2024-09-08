@@ -49,10 +49,15 @@ def allauth_email_confirmed_handler(request, email_address, *args, **kwargs):
         init_email_confirmed = False,
     )
     # doesn't send the save method or create the stripe customer
-    qs.update(init_email_confirmed=True)
-    for obj in qs:
-        obj.init_email_confirmed=True
-        # send the signal 
-        obj.save()
+    # qs.update(init_email_confirmed=True)
+    # for obj in qs:
+    #     obj.init_email_confirmed=True
+    #     # send the signal 
+    #     obj.save()
+
+     # Iterate and save each Customer instance
+    for customer in qs:
+        customer.init_email_confirmed = True
+        customer.save()  # This will trigger the save method and create the Stripe ID
 
 allauth_email_confirmed.connect(allauth_email_confirmed_handler)  
